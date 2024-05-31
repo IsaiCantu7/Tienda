@@ -1,22 +1,28 @@
 <?php
+// app/Models/Sales.php
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Sales extends Model
 {
-    use HasFactory;
-
-    
     protected $fillable = [
-        'id_product',
-        'id_category',
-        'id_customer',
-        'date_sale',
-        'subtotal',
-        'iva',
-        'total',
+        'name_product', 'name_category', 'name_customer', 'date_sale', 'subtotal', 'iva', 'total'
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'name_product');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'name_category');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'name_customer');
+    }
 }

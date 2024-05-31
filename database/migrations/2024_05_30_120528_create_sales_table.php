@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,9 +14,9 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_product')->constrained('products');
-            $table->foreignId('id_category')->constrained('categories');
-            $table->foreignId('id_customer')->constrained('customers');
+            $table->string('name_product');
+            $table->string('name_category');
+            $table->string('name_customer');
             $table->date('date_sale');
             $table->decimal('subtotal', 10, 2);
             $table->decimal('iva', 10, 2);

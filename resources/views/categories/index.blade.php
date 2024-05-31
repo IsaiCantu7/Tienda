@@ -70,9 +70,6 @@
                                 {{ $categories->links() }}
                             </div>
 
-                            <div class="mt-6 text-center text-md font-semibold text-gray-800 dark:text-gray-200">
-                                UPV 2024
-                            </div>
                         
                             </div>
                         </div>

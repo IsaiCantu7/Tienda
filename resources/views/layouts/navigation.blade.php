@@ -32,6 +32,11 @@
                     <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.index')">
                         {{ ('Ventas') }}
                     </x-nav-link>
+
+                                        
+                    <x-nav-link :href="route('inventories.index')" :active="request()->routeIs('inventories.index')">
+                        {{ ('Inventarios') }}
+                    </x-nav-link>
                 </div>
             </div>
 

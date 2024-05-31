@@ -45,9 +45,9 @@
                                     @forelse ($sales as $sale)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $loop->iteration }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $sale->id_product }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $sale->id_category }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $sale->id_customer }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $sale->name_product}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $sale->name_category}}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $sale->name_customer }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $sale->date_sale }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $sale->subtotal }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $sale->iva }}</td>
@@ -85,9 +85,7 @@
                                 {{ $sales->links() }}
                             </div>
 
-                            <div class="mt-6 text-center text-md font-semibold text-gray-800 dark:text-gray-200">
-                                {{ __('UPV 2024') }}
-                            </div>
+                            
 
                         </div>
                     </div>

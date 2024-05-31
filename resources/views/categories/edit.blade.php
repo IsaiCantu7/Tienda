@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 space-y-4">
                 <div class="flex justify-between items-center">
                     <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Editar categoria</h2>
-                    <a href="{{ route('categories.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md flex items-center"><i class="bi bi-arrow-left mr-1"></i> Back</a>
+                    <a href="{{ route('categories.index') }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md flex items-center"><i class="bi bi-arrow-left mr-1"></i> Regresar</a>
                 </div>
 
                 <form action="{{ route('categories.update', $category->id) }}" method="post" class="space-y-4">

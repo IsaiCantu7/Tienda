@@ -1,11 +1,11 @@
 <?php
-
 // app/Http/Controllers/ProductController.php
 
 namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Inventories;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\View\View;
@@ -40,7 +40,27 @@ class ProductController extends Controller
         $validatedData['description_large'] = $request->input('description_large');
         $validatedData['colors'] = $request->input('colors');
         // Creamos el nuevo producto en la base de datos
-        Product::create($validatedData);
+        $product = Product::create($validatedData);
+
+        // Cantidad especificada en el formulario
+        $quantity = $request->input('quantity');
+
+        // Buscamos si existe un producto con el mismo ID y categoría en el inventario
+        $existingInventory = Inventories::where('id_product', $product->id)
+                                        ->where('id_category', $validatedData['category_id'])
+                                        ->first();
+        
+        // Si existe, incrementamos la cantidad especificada
+        if ($existingInventory) {
+            $existingInventory->increment('quantity', $quantity);
+        } else {
+            // Si no existe, creamos un nuevo registro en el inventario
+            Inventories::create([
+                'id_product' => $product->id,
+                'id_category' => $validatedData['category_id'],
+                'quantity' => $quantity
+            ]);
+        }
 
         // Redireccionamos de vuelta a la lista de productos con un mensaje de éxito
         return redirect()->route('products.index')
@@ -83,6 +103,9 @@ class ProductController extends Controller
     // Método para eliminar un producto de la base de datos
     public function destroy(Product $product) : RedirectResponse
     {
+        // Eliminar el inventario asociado al producto si es necesario
+        Inventories::where('id_product', $product->id)->delete();
+
         // Eliminamos el producto de la base de datos
         $product->delete();
 
